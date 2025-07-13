@@ -94,8 +94,18 @@ const animateProgressBars = function() {
             if (entry.isIntersecting) {
                 progressBars.forEach(bar => {
                     const level = bar.getAttribute('data-level');
+                    const isUpgrading = bar.classList.contains('upgrading');
+                    
                     setTimeout(() => {
                         bar.style.width = level + '%';
+                        
+                        // Special animation for upgrading language (German)
+                        if (isUpgrading) {
+                            // Start the upgrading animation after initial load
+                            setTimeout(() => {
+                                animateUpgradingProgress(bar);
+                            }, 2000);
+                        }
                     }, 300);
                 });
                 observer.unobserve(entry.target);
@@ -107,6 +117,30 @@ const animateProgressBars = function() {
         observer.observe(languagesSection);
     }
 };
+
+// ===== UPGRADING PROGRESS ANIMATION =====
+function animateUpgradingProgress(bar) {
+    const currentLevel = parseInt(bar.getAttribute('data-level'));
+    const targetLevel = parseInt(bar.getAttribute('data-target')) || currentLevel + 15;
+    
+    let progress = currentLevel;
+    const increment = (targetLevel - currentLevel) / 100;
+    
+    const upgradeInterval = setInterval(() => {
+        progress += increment;
+        if (progress >= targetLevel) {
+            progress = targetLevel;
+            clearInterval(upgradeInterval);
+            // Restart the animation after a pause
+            setTimeout(() => {
+                progress = currentLevel;
+                bar.style.width = currentLevel + '%';
+                setTimeout(() => animateUpgradingProgress(bar), 1000);
+            }, 3000);
+        }
+        bar.style.width = progress + '%';
+    }, 80);
+}
 
 // ===== TYPING EFFECT FOR HERO TITLE =====
 function typeWriter(element, text, speed = 100) {
@@ -486,6 +520,19 @@ window.addEventListener('load', function() {
             bar.style.width = level + '%';
         });
     }, 1000);
+});
+
+// ===== GERMAN LANGUAGE INTERACTIONS =====
+document.addEventListener('DOMContentLoaded', function() {
+    const germanLanguageItem = document.querySelector('.language-item:has(.upgrading)');
+    const germanProgressBar = document.querySelector('.language-progress.upgrading');
+    
+    if (germanLanguageItem) {
+        // Hover effect
+        germanLanguageItem.addEventListener('mouseenter', function() {
+            showNotification('🇩🇪 Actively learning German through daily practice and courses!');
+        });
+    }
 });
 
 // Initialize mobile menu
