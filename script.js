@@ -76,7 +76,7 @@ const observer = new IntersectionObserver(function(entries) {
 
 // Observe elements for scroll animations
 document.addEventListener('DOMContentLoaded', function() {
-    const animateElements = document.querySelectorAll('.timeline-item, .skill-category, .education-item, .certification-item');
+    const animateElements = document.querySelectorAll('.timeline-item, .skill-category, .education-item, .certification-item, .ai-tool');
     
     animateElements.forEach(element => {
         element.classList.add('scroll-animate');
@@ -292,6 +292,8 @@ document.addEventListener('DOMContentLoaded', function() {
     animateProgressBars();
     animateTimeline();
     addScrollToTop();
+    animateAITools();
+    animateCounters();
     
     // Add scroll event listener with debouncing
     window.addEventListener('scroll', debounce(revealOnScroll, 10));
@@ -307,35 +309,33 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.classList.add('loaded');
 });
 
-// ===== MOBILE MENU TOGGLE (for future mobile optimization) =====
+// ===== MOBILE MENU TOGGLE =====
 function initMobileMenu() {
     const navMenu = document.querySelector('.nav-menu');
-    const navToggle = document.createElement('button');
+    const navToggle = document.querySelector('.nav-toggle');
     
-    navToggle.className = 'nav-toggle';
-    navToggle.innerHTML = '☰';
-    navToggle.style.cssText = `
-        display: none;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        color: var(--primary-color);
-        cursor: pointer;
-    `;
-    
-    // Add toggle to navigation
-    document.querySelector('.nav-container').appendChild(navToggle);
+    if (!navToggle) return;
     
     // Toggle functionality
     navToggle.addEventListener('click', function() {
         navMenu.classList.toggle('mobile-open');
+        this.classList.toggle('active');
     });
     
     // Close menu when clicking on links
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', function() {
             navMenu.classList.remove('mobile-open');
+            navToggle.classList.remove('active');
         });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+            navMenu.classList.remove('mobile-open');
+            navToggle.classList.remove('active');
+        }
     });
 }
 
@@ -402,6 +402,71 @@ function showNotification(message) {
             document.body.removeChild(notification);
         }, 300);
     }, 3000);
+}
+
+// ===== AI TOOLS ANIMATION =====
+function animateAITools() {
+    const aiTools = document.querySelectorAll('.ai-tool');
+    const aiSection = document.querySelector('.ai-highlight');
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                aiTools.forEach((tool, index) => {
+                    setTimeout(() => {
+                        tool.style.opacity = '1';
+                        tool.style.transform = 'translateY(0) scale(1)';
+                    }, index * 150);
+                });
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+    
+    if (aiSection) {
+        // Set initial state
+        aiTools.forEach(tool => {
+            tool.style.opacity = '0';
+            tool.style.transform = 'translateY(20px) scale(0.8)';
+            tool.style.transition = 'all 0.6s ease';
+        });
+        
+        observer.observe(aiSection);
+    }
+}
+
+// ===== STATS COUNTER ANIMATION =====
+function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    const statsSection = document.querySelector('.stats');
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const start = 0;
+                    const increment = target / (duration / 16);
+                    let current = start;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        counter.textContent = Math.floor(current).toLocaleString();
+                    }, 16);
+                });
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+    
+    if (statsSection) {
+        observer.observe(statsSection);
+    }
 }
 
 // ===== ENHANCED LOADING ANIMATIONS =====

@@ -14,11 +14,13 @@ A stunning, minimalistic portfolio website showcasing Vasiliki Ploumistou's prof
 
 ### Interactive Elements
 - **Smooth Scrolling Navigation**: Seamless navigation between sections
+- **Mobile-Optimized Navigation**: Hamburger menu for mobile devices
 - **Animated Progress Bars**: Visual representation of language proficiency
 - **Hover Effects**: Engaging micro-interactions on skill cards and buttons
 - **Scroll Animations**: Elements reveal beautifully as you scroll
 - **Timeline Animation**: Work experience presented in an elegant timeline
 - **Copy-to-Clipboard**: Click email to copy address to clipboard
+- **CV Download**: Direct download of CV in PDF format
 
 ### Sections
 1. **Hero Section**: Professional introduction with profile image
@@ -31,17 +33,20 @@ A stunning, minimalistic portfolio website showcasing Vasiliki Ploumistou's prof
 ## 📁 File Structure
 
 ```
-├── index.html          # Main HTML structure
-├── styles.css          # Swedish-inspired styling
-├── script.js           # Interactive functionality
-├── IMG_0381 2.jpg      # Profile image
-└── README.md          # Documentation
+├── index.html                      # Main HTML structure
+├── styles.css                      # Swedish-inspired styling
+├── script.js                       # Interactive functionality
+├── VP.jpg                          # Profile image
+├── calligraphy.png                 # Calligraphy logo
+├── CV_Vasiliki Ploumistou_12_07_25.pdf # Downloadable CV
+└── README.md                       # Documentation
 ```
 
 ## 🎯 Key Highlights
 
 - **Business Development Expertise**: Current role at SpiroChem AG
 - **Marketing Experience**: Internship at Rituals Cosmetics
+- **AI & Technology Proficient**: Experience with AI tools, agents, and automation
 - **Multilingual**: Native Greek, Fluent English, Basic German & Russian
 - **Educational Background**: MSc Digital Transformation (ongoing)
 - **Industry Knowledge**: Life sciences, cosmetics, consumer goods
@@ -53,6 +58,7 @@ A stunning, minimalistic portfolio website showcasing Vasiliki Ploumistou's prof
 - **Accessibility**: Semantic HTML and ARIA labels
 - **Performance**: Optimized images and efficient animations
 - **SEO Friendly**: Proper meta tags and semantic structure
+- **Built With**: Cursor + Claude + ChatGPT for AI-powered development
 
 ## 🌟 Swedish Design Principles Applied
 
