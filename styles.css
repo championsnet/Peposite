@@ -6,19 +6,19 @@
 }
 
 :root {
-    --primary-color: #4A90A4;
-    --secondary-color: #7BA7BC;
-    --accent-color: #E8F4F8;
-    --text-dark: #2C3E50;
-    --text-light: #6C7B7F;
+    --primary-color: #6B8E6B;
+    --secondary-color: #8FA68F;
+    --accent-color: #F0F5F0;
+    --text-dark: #2D3E2D;
+    --text-light: #5A6B5A;
     --text-white: #FFFFFF;
-    --background-white: #FAFAFA;
-    --background-light: #F8F9FA;
-    --border-light: #E9ECEF;
-    --shadow-light: 0 2px 20px rgba(74, 144, 164, 0.1);
-    --shadow-medium: 0 8px 30px rgba(74, 144, 164, 0.15);
-    --gradient-primary: linear-gradient(135deg, #4A90A4 0%, #7BA7BC 100%);
-    --gradient-light: linear-gradient(135deg, #F8F9FA 0%, #E8F4F8 100%);
+    --background-white: #FEFEFE;
+    --background-light: #F8FBF8;
+    --border-light: #E8F0E8;
+    --shadow-light: 0 2px 20px rgba(107, 142, 107, 0.08);
+    --shadow-medium: 0 8px 30px rgba(107, 142, 107, 0.12);
+    --gradient-primary: linear-gradient(135deg, #6B8E6B 0%, #8FA68F 100%);
+    --gradient-light: linear-gradient(135deg, #F8FBF8 0%, #F0F5F0 100%);
 }
 
 html {
@@ -182,8 +182,8 @@ p {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 20%, rgba(74, 144, 164, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(123, 167, 188, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 20% 20%, rgba(107, 142, 107, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(143, 166, 143, 0.06) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -206,10 +206,7 @@ p {
     font-size: 4rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #6b8e6b;
     line-height: 1.1;
 }
 
@@ -578,16 +575,16 @@ p {
 }
 
 .language-item:has(.upgrading) {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(52, 211, 153, 0.05));
-    border: 2px solid rgba(16, 185, 129, 0.3);
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+    background: linear-gradient(135deg, rgba(107, 142, 107, 0.04), rgba(143, 166, 143, 0.04));
+    border: 2px solid rgba(107, 142, 107, 0.2);
+    box-shadow: 0 4px 15px rgba(107, 142, 107, 0.1);
     padding: 1rem;
 }
 
 .language-item:has(.upgrading):hover {
-    border-color: rgba(16, 185, 129, 0.5);
+    border-color: rgba(107, 142, 107, 0.35);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.25);
+    box-shadow: 0 6px 20px rgba(107, 142, 107, 0.18);
 }
 
 .language-bar {
@@ -761,9 +758,7 @@ p {
 }
 
 .education-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 4rem;
+    display: block;
 }
 
 .education-section h3,
@@ -942,14 +937,14 @@ p {
 /* ===== UPGRADING LANGUAGE ANIMATION ===== */
 .language-progress.upgrading {
     background: linear-gradient(90deg, 
-        #10B981 0%, 
-        #34D399 25%, 
-        #6EE7B7 50%, 
-        #34D399 75%, 
-        #10B981 100%);
+        #6B8E6B 0%, 
+        #8FA68F 25%, 
+        #A8C4A8 50%, 
+        #8FA68F 75%, 
+        #6B8E6B 100%);
     background-size: 200% 100%;
     animation: shimmer 2s ease-in-out infinite, progressUpgrade 8s ease-in-out infinite;
-    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 2px 10px rgba(107, 142, 107, 0.3);
     position: relative;
     overflow: visible;
 }
@@ -963,7 +958,7 @@ p {
     bottom: -2px;
     background: linear-gradient(90deg, 
         transparent, 
-        rgba(16, 185, 129, 0.6), 
+        rgba(107, 142, 107, 0.4), 
         transparent);
     border-radius: 6px;
     opacity: 0;
@@ -987,7 +982,7 @@ p {
     align-items: center;
     gap: 0.5rem;
     font-size: 0.8rem;
-    color: #10B981;
+    color: #6B8E6B;
     font-weight: 600;
     opacity: 0;
     animation: fadeInUpgrade 1s ease-out 2s forwards;
@@ -999,7 +994,7 @@ p {
 }
 
 .upgrade-text {
-    background: linear-gradient(90deg, #10B981, #34D399, #10B981);
+    background: linear-gradient(90deg, #6B8E6B, #8FA68F, #6B8E6B);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
