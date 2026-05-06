@@ -1,5 +1,9 @@
 // ===== SMOOTH SCROLLING FOR NAVIGATION LINKS =====
 document.addEventListener('DOMContentLoaded', function() {
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+
     // Get all navigation links
     const navLinks = document.querySelectorAll('.nav-link');
     
@@ -28,10 +32,10 @@ window.addEventListener('scroll', function() {
     const scrollPosition = window.scrollY;
     
     if (scrollPosition > 100) {
-        nav.style.background = 'rgba(250, 250, 250, 0.98)';
-        nav.style.boxShadow = '0 2px 20px rgba(74, 144, 164, 0.1)';
+        nav.style.background = 'rgba(251, 250, 247, 0.97)';
+        nav.style.boxShadow = '0 12px 35px rgba(23, 36, 43, 0.06)';
     } else {
-        nav.style.background = 'rgba(250, 250, 250, 0.95)';
+        nav.style.background = 'rgba(251, 250, 247, 0.92)';
         nav.style.boxShadow = 'none';
     }
 });
@@ -76,7 +80,7 @@ const observer = new IntersectionObserver(function(entries) {
 
 // Observe elements for scroll animations
 document.addEventListener('DOMContentLoaded', function() {
-    const animateElements = document.querySelectorAll('.timeline-item, .skill-category, .education-item, .certification-item, .ai-tool');
+    const animateElements = document.querySelectorAll('.timeline-item, .skill-category, .education-item, .certification-item, .stat-item');
     
     animateElements.forEach(element => {
         element.classList.add('scroll-animate');
@@ -190,11 +194,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     contactMethods.forEach(method => {
         method.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px) scale(1.02)';
+            this.style.transform = 'translateY(-2px)';
         });
         
         method.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
+            this.style.transform = 'translateY(0)';
         });
     });
 });
@@ -205,13 +209,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     skillCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
-            // Add glow effect
-            this.style.boxShadow = '0 20px 40px rgba(74, 144, 164, 0.3)';
+            // Keep interactions restrained and consistent with the minimal card design.
+            this.style.boxShadow = '0 14px 40px rgba(23, 36, 43, 0.08)';
             
-            // Slightly rotate the icon
             const icon = this.querySelector('.skill-icon');
             if (icon) {
-                icon.style.transform = 'scale(1.1) rotate(5deg)';
+                icon.style.transform = 'translateY(-2px)';
                 icon.style.transition = 'transform 0.3s ease';
             }
         });
@@ -221,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const icon = this.querySelector('.skill-icon');
             if (icon) {
-                icon.style.transform = 'scale(1) rotate(0deg)';
+                icon.style.transform = 'translateY(0)';
             }
         });
     });
@@ -265,7 +268,7 @@ function addScrollToTop() {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #4A90A4 0%, #7BA7BC 100%);
+        background: #2F5F73;
         color: white;
         border: none;
         font-size: 20px;
@@ -274,7 +277,7 @@ function addScrollToTop() {
         visibility: hidden;
         transition: all 0.3s ease;
         z-index: 1000;
-        box-shadow: 0 4px 20px rgba(74, 144, 164, 0.3);
+        box-shadow: 0 14px 35px rgba(23, 36, 43, 0.18);
     `;
     
     document.body.appendChild(scrollBtn);
@@ -409,11 +412,11 @@ function showNotification(message) {
         position: fixed;
         top: 100px;
         right: 30px;
-        background: linear-gradient(135deg, #4A90A4 0%, #7BA7BC 100%);
+        background: #2F5F73;
         color: white;
         padding: 1rem 2rem;
         border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(74, 144, 164, 0.3);
+        box-shadow: 0 14px 35px rgba(23, 36, 43, 0.18);
         z-index: 10000;
         opacity: 0;
         transform: translateX(100px);
@@ -479,6 +482,7 @@ function animateCounters() {
             if (entry.isIntersecting) {
                 counters.forEach(counter => {
                     const target = parseInt(counter.getAttribute('data-target'));
+                    const suffix = counter.getAttribute('data-suffix') || '';
                     const duration = 2000;
                     const start = 0;
                     const increment = target / (duration / 16);
@@ -490,7 +494,7 @@ function animateCounters() {
                             current = target;
                             clearInterval(timer);
                         }
-                        counter.textContent = Math.floor(current).toLocaleString();
+                        counter.textContent = Math.floor(current).toLocaleString() + suffix;
                     }, 16);
                 });
                 observer.unobserve(entry.target);
@@ -525,12 +529,11 @@ window.addEventListener('load', function() {
 // ===== GERMAN LANGUAGE INTERACTIONS =====
 document.addEventListener('DOMContentLoaded', function() {
     const germanLanguageItem = document.querySelector('.language-item:has(.upgrading)');
-    const germanProgressBar = document.querySelector('.language-progress.upgrading');
     
     if (germanLanguageItem) {
         // Hover effect
         germanLanguageItem.addEventListener('mouseenter', function() {
-            showNotification('🇩🇪 Actively learning German through daily practice and courses!');
+            showNotification('Actively learning German through daily practice and courses.');
         });
     }
 });
